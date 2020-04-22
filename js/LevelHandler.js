@@ -20,6 +20,14 @@ export let setConfiguration = function() {
             configuration.game_configuration.donuts = createDonut();  
             configuration.game_configuration.gravity = -0.02;
             return configuration;
+        case 'medium':
+            configuration.game_configuration.donuts = createDonut();  
+            configuration.game_configuration.gravity = -0.05;
+            return configuration;
+        case 'hard':
+            configuration.game_configuration.donuts = createDonut();  
+            configuration.game_configuration.gravity = -0.08;
+            return configuration;
 
         default:
             console.log('something went wrong...');

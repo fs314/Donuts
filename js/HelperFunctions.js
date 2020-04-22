@@ -1,5 +1,5 @@
 export let getRandomNumInRange = function (min, max) {
-    return Math.round(Math.random()* (max - min) + min);
+    return Math.random()* (max - min) + min;
 };
 
 export let createRandomColor = function() {
