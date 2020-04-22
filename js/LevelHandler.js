@@ -11,17 +11,9 @@ const configuration = {
 };
 
 export let setConfiguration = function() {
-
-    //create the scene
-    configuration.scene = new THREE.Scene();
-    configuration.scene.background = new THREE.Color(0xabffab);
-    //create and locate camera
-    configuration.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000);
-    configuration.camera.position.z = 7;
-    //create the renderer 
-    configuration.renderer = new THREE.WebGLRenderer();
-    configuration.renderer.setSize(window.innerWidth, window.innerHeight);
     
+    init();
+
     const level = prompt('Choose level... easy, medium or hard', 'easy');
     switch(level) {
         case 'easy':
@@ -33,4 +25,16 @@ export let setConfiguration = function() {
             console.log('something went wrong...');
             return null;
     }
+};
+
+let init = function() {
+    //create the scene
+    configuration.scene = new THREE.Scene();
+    configuration.scene.background = new THREE.Color(0xabffab);
+    //create and locate camera
+    configuration.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000);
+    configuration.camera.position.z = 7;
+    //create the renderer 
+    configuration.renderer = new THREE.WebGLRenderer();
+    configuration.renderer.setSize(window.innerWidth, window.innerHeight);
 };
