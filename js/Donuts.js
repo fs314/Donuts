@@ -1,11 +1,10 @@
 import {getRandomNumInRange, createRandomColor} from './HelperFunctions.js';
 
 let donut;
-let donuts = [];
 
 //onclick remove donut
 
-export const createDonut = function() {
+export const createDonut = function(donuts) {
     let radiusTube = Math.random()/ 10; 
     let dntColor = createRandomColor();
  
@@ -18,9 +17,6 @@ export const createDonut = function() {
     donut.position.x = getRandomNumInRange(-15, 15);
    
     donuts.push(donut);
-    if(donuts.length < 30) { 
-        createDonut() 
-    };
 
     return donuts;
 };

@@ -1,11 +1,9 @@
-import {createDonut} from './Donuts.js';
-
 const configuration = {
     scene: null,
     renderer: null,
     camera: null,
     game_configuration: {
-        donuts: [],
+        percentageDonuts: 0,
         gravity: 0
     }
 };
@@ -17,15 +15,15 @@ export let setConfiguration = function() {
     const level = prompt('Choose level... easy, medium or hard', 'easy');
     switch(level) {
         case 'easy':
-            configuration.game_configuration.donuts = createDonut();  
+            configuration.game_configuration.percentageDonuts = 0.2;  
             configuration.game_configuration.gravity = -0.02;
             return configuration;
         case 'medium':
-            configuration.game_configuration.donuts = createDonut();  
+            configuration.game_configuration.percentageDonuts = 0.2;  
             configuration.game_configuration.gravity = -0.05;
             return configuration;
         case 'hard':
-            configuration.game_configuration.donuts = createDonut();  
+            configuration.game_configuration.percentageDonuts = 0.2; 
             configuration.game_configuration.gravity = -0.08;
             return configuration;
 
