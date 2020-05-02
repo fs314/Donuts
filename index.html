@@ -10,6 +10,10 @@
            width: 100%;
            margin: 5px;
         }
+
+        #game-settings{
+            flex: auto;
+        } 
         </style>
 </head>
 <body>
@@ -17,6 +21,16 @@
     <script type='module' src="./js/App.js"></script>
     <script nomodule></script>
     <noscript>Please, enable Javascript to get app properly working... </noscript>
+    <div id='game-header'>
+        <h1>Catch the donuts!</h1>
+        <div id="game-settings">
+            <button>Easy</button>
+            <button>Medium</button>
+            <button>Hard</button> 
+        </div>
+        <p>score...</p>
+    </div>
     <div id="game-container"></div>
+    <button>exit</button>
 </body>
 </html>
