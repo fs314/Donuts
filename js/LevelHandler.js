@@ -19,12 +19,12 @@ export let setConfiguration = function() {
             configuration.game_configuration.gravity = -0.02;
             return configuration;
         case 'medium':
-            configuration.game_configuration.percentageDonuts = 0.2;  
-            configuration.game_configuration.gravity = -0.05;
+            configuration.game_configuration.percentageDonuts = 0.3;  
+            configuration.game_configuration.gravity = -0.03;
             return configuration;
         case 'hard':
-            configuration.game_configuration.percentageDonuts = 0.2; 
-            configuration.game_configuration.gravity = -0.08;
+            configuration.game_configuration.percentageDonuts = 0.5; 
+            configuration.game_configuration.gravity = -0.05;
             return configuration;
 
         default:

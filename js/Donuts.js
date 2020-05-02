@@ -2,8 +2,6 @@ import {getRandomNumInRange, createRandomColor} from './HelperFunctions.js';
 
 let donut;
 
-//onclick remove donut
-
 export const createDonut = function(donuts) {
     let radiusTube = Math.random()/ 10; 
     let dntColor = createRandomColor();

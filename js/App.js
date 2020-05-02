@@ -1,4 +1,4 @@
-import {setConfiguration} from './LevelHandler.js';
+import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
 import {dropDonut, createDonut} from './Donuts.js';
 
 const configuration = setConfiguration();
@@ -26,6 +26,11 @@ if(configuration != null) { // use better error handling ...
         for (const donut of donuts) {
             scene.add(donut);
             dropDonut(donut, game_configuration.gravity);
+            if(donut.position.y <=  -1) {
+                donut.geometry.dispose();
+                donut.material.dispose();
+                scene.remove(donut);
+            }
         } 
 
         // update the picking ray with the camera and mouse position
