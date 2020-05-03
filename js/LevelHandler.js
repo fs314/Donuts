@@ -1,4 +1,5 @@
 const configuration = {
+    container:  document.getElementById('game-container'),
     scene: null,
     renderer: null,
     camera: null,
@@ -42,5 +43,5 @@ let init = function() {
     configuration.camera.position.z = 7;
     //create the renderer 
     configuration.renderer = new THREE.WebGLRenderer();
-    configuration.renderer.setSize(window.innerWidth, window.innerHeight);
+    configuration.renderer.setSize(configuration.container.offsetWidth, configuration.container.offsetHeight);
 };

@@ -8,8 +8,8 @@ let mouse = new THREE.Vector2();
 let donuts = [];
 
 if(configuration != null) { // use better error handling ...
-    const {renderer, scene, camera, game_configuration } = configuration;
-    document.body.appendChild(renderer.domElement);
+    const {container, renderer, scene, camera, game_configuration } = configuration;
+    container.appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
     function onMouseMove(event) {
