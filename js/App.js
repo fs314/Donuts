@@ -4,6 +4,7 @@ import {dropDonut, createDonut} from './Donuts.js';
 const configuration = setConfiguration();
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
+let requestId;
 
 let donuts = [];
 
@@ -19,6 +20,7 @@ if(configuration != null) { // use better error handling ...
     }
 
     let mainLoop = function() {
+
         if(Math.random() < game_configuration.percentageDonuts) {
             createDonut(donuts)
         };
@@ -42,9 +44,14 @@ if(configuration != null) { // use better error handling ...
         }
         
         renderer.render(scene, camera);
-        requestAnimationFrame(mainLoop);
+        requestId = requestAnimationFrame(mainLoop);
     }; 
 
+    function stopAnimation() {
+        cancelAnimationFrame( requestId );
+    }
+
+    document.getElementById( 'stopAnimation' ).addEventListener( 'click', stopAnimation );
     window.addEventListener( 'mousemove', onMouseMove, false );
     mainLoop();
 }
