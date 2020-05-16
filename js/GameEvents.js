@@ -1,23 +1,20 @@
-import {dropDonut, createDonut} from './Donuts.js';
+import {createDonut} from './Donuts.js';
 
-export let donutsGenerator = function(donuts, gravity, percentageDonuts, scene) {
-   
-    if(Math.random() < percentageDonuts) {
-        createDonut(donuts)
-    };
-
-    for (const donut of donuts) {
-        scene.add(donut);
-        dropDonut(donut, gravity);
-        if(donut.position.y <=  -1) {
-            donut.geometry.dispose();
-            donut.material.dispose();
-            scene.remove(donut);
-        }
-    } 
-
+export let donutsGenerator = function( scene) {
+    let donuts =[];
+    for(let i=0; i<20; i++) {
+        let donut = createDonut();
+        donuts.push(donut);
+    }
     return donuts;
 }
+
+export const dropDonut = function(donut, gravity) {
+    setTimeout(
+        donut.position.y += gravity * Math.random(), 
+        Math.random()*10000
+    ); 
+};
 
 
 export let colorChangeDonut = function(raycaster, scene, mouse, camera) {

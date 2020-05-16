@@ -1,5 +1,6 @@
 import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
-import {donutsGenerator, colorChangeDonut} from './GameEvents.js';
+import {donutsGenerator,dropDonut} from './GameEvents.js';
+import {getRandomNumInRange, createRandomColor} from './HelperFunctions.js';
 
 const {container, percentageDonuts, gravity } = setConfiguration();
 
@@ -19,13 +20,28 @@ renderer.render(scene, camera);
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
 let requestId;
-
-let donuts = [];
+let donuts = donutsGenerator(scene); 
 
 let mainLoop = function() {
-    donuts = donutsGenerator(donuts, gravity, percentageDonuts, scene);
-    
-    //colorChangeDonut(raycaster, scene, mouse, camera);
+
+    donuts.forEach((donut) => {
+       if(Math.random() < percentageDonuts) {
+           scene.add(donut);
+        }
+        
+        donut.position.y += gravity * Math.random();
+        dropDonut(donut, gravity);
+
+            if(donut.position.y <=  -1) {
+                //donut.geometry.dispose();
+                //donut.material.dispose();
+                //scene.remove(donut);
+                donut.position.y = 1.7;
+                donut.position.x = getRandomNumInRange(-15, 15);
+                donut.material.color.set( createRandomColor() );
+            }
+    });
+
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
     // calculate objects intersecting the picking ray
@@ -46,6 +62,7 @@ let onMouseMove = function(event) {
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 } 
+
 
 document.getElementById( 'stopAnimation' ).addEventListener( 'click', stopAnimation);
 window.addEventListener( 'mousemove', onMouseMove, false );
