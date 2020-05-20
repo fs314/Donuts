@@ -34,13 +34,12 @@ let mainLoop = function() {
        if(Math.random() < percentageDonuts) {
            scene.add(donut);
         }
-        
-        donut.position.y += gravity * Math.random();
+      
         dropDonut(donut, gravity);
 
-        if(donut.position.y <=  -1) {
-            donut.position.y = 1.7;
-            donut.position.x = getRandomNumInRange(-15, 15);
+        if(donut.position.x <=  -3) {
+            donut.position.y = getRandomNumInRange(-1.7, 17);
+            donut.position.x =3;
             donut.material.color.set( createRandomColor() );
         }
     }); 

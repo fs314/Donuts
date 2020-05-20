@@ -9,8 +9,8 @@ export const createDonut = function() {
 
     let donut = new THREE.Mesh(geometry, material);
 
-    donut.position.y = 1.7;
-    donut.position.x = getRandomNumInRange(-15, 15);
+    donut.position.y = getRandomNumInRange(-5, 5);
+    donut.position.x =3;
 
     return donut;
 };
