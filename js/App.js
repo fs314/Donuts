@@ -7,13 +7,13 @@ const {container, percentageDonuts, gravity } = setConfiguration();
 
 //create the scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xabffab);
 //create and locate camera
-const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000);
+const camera = new THREE.PerspectiveCamera(30, container.offsetWidth/container.offsetHeight, 1, 1000);
 camera.position.z = 7;
 //create the renderer 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(container.offsetWidth, container.offsetHeight);
+renderer.setClearColor("#ffffab");
 
 container.appendChild(renderer.domElement);
 renderer.render(scene, camera);
@@ -29,6 +29,7 @@ scene.add( hasee);
 let mainLoop = function() {
 
     hasee.position.x = vector.x;
+    hasee.rotation.y += 0.01;
 
     donuts.forEach((donut) => {
        if(Math.random() < percentageDonuts) {
@@ -42,7 +43,7 @@ let mainLoop = function() {
             donut.position.x =3;
             donut.material.color.set( createRandomColor() );
         }
-    }); 
+    });  
 
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
@@ -81,5 +82,11 @@ document.onkeydown = function(e) {
 
 document.getElementById( 'stopAnimation' ).addEventListener( 'click', stopAnimation);
 window.addEventListener( 'mousemove', onMouseMove, false );
+window.addEventListener('resize', () => {
+  renderer.setSize(container.offsetWidth, container.offsetHeight);
+  camera.aspect = container.offsetWidth/ container.offsetHeight;
+
+  camera.updateProjectMatrix();
+}); 
 
 mainLoop(); 
