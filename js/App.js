@@ -1,6 +1,7 @@
 import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
 import {donutsGenerator,dropDonut} from './GameEvents.js';
 import {getRandomNumInRange, createRandomColor} from './HelperFunctions.js';
+import {haseeGenerator} from './Hasee.js';
 
 const {container, percentageDonuts, gravity } = setConfiguration();
 
@@ -22,7 +23,12 @@ let mouse = new THREE.Vector2();
 let requestId;
 let donuts = donutsGenerator(scene); 
 
+let hasee = haseeGenerator();
+scene.add( hasee);
+
 let mainLoop = function() {
+
+    hasee.position.x = vector.x;
 
     donuts.forEach((donut) => {
        if(Math.random() < percentageDonuts) {
@@ -32,15 +38,12 @@ let mainLoop = function() {
         donut.position.y += gravity * Math.random();
         dropDonut(donut, gravity);
 
-            if(donut.position.y <=  -1) {
-                //donut.geometry.dispose();
-                //donut.material.dispose();
-                //scene.remove(donut);
-                donut.position.y = 1.7;
-                donut.position.x = getRandomNumInRange(-15, 15);
-                donut.material.color.set( createRandomColor() );
-            }
-    });
+        if(donut.position.y <=  -1) {
+            donut.position.y = 1.7;
+            donut.position.x = getRandomNumInRange(-15, 15);
+            donut.material.color.set( createRandomColor() );
+        }
+    }); 
 
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
@@ -63,6 +66,19 @@ let onMouseMove = function(event) {
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 } 
 
+// vector for motion
+var vector = {x: 0, y: 0, z: 0};
+
+// key handler
+document.onkeydown = function(e) {
+  e.preventDefault();
+  if (e.key === 'ArrowRight') {     
+    vector.x += 0.02;
+  }
+  else if (e.key === 'ArrowLeft') { 
+    vector.x -= 0.02;
+  }
+};
 
 document.getElementById( 'stopAnimation' ).addEventListener( 'click', stopAnimation);
 window.addEventListener( 'mousemove', onMouseMove, false );

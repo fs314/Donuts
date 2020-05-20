@@ -10,6 +10,7 @@ export let donutsGenerator = function( scene) {
 }
 
 export const dropDonut = function(donut, gravity) {
+    donut.rotation.y += 0.001
     setTimeout(
         donut.position.y += gravity * Math.random(), 
         Math.random()*10000
