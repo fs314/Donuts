@@ -14,6 +14,7 @@ export let haseeGenerator = () => {
     let torsoGeom = new THREE.BoxGeometry( 0.5, 0.5, 0.5 );
     let torso = new THREE.Mesh( torsoGeom, bodyMaterial1 );
     torso.rotation.y = 0.3;
+    torso.position.z=0;
     body.add(torso);
 
     let handGeom = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
@@ -36,6 +37,18 @@ export let haseeGenerator = () => {
     footR.position.y= -0.3;
     body.add(footR);
 
+    let eyeGeom = new THREE.BoxGeometry( 0.1, 0.1, 0.01 );
+    let eyeL = new THREE.Mesh( eyeGeom, armsMaterial );
+    eyeL.position.x =-0.15;
+    eyeL.position.y= 0.1;
+    eyeL.position.z= 0.33;
+    body.add(eyeL);
+
+    let eyeR = new THREE.Mesh( eyeGeom, armsMaterial );
+    eyeR.position.x = 0.25;
+    eyeR.position.y= 0.1;
+    eyeR.position.z= 0.25;
+    body.add(eyeR);
 
 
     return body; 
