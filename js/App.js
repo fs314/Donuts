@@ -41,6 +41,8 @@ let mainLoop = function() {
         }
       
         dropDonut(donut, gravity);
+        donut.rotation.x +=0.01;
+        donut.rotation.y +=0.01;
 
         if(donut.position.x <=  -3) {
             donut.position.y = getRandomNumInRange(-1.7, 17);
