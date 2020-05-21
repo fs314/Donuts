@@ -15,8 +15,12 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(container.offsetWidth, container.offsetHeight);
 renderer.setClearColor("#ffffab");
 
+
+//Added very basic soft white light to project. This is temporary, will adjust later
+const light = new THREE.AmbientLight( 0xffffff ); 
+scene.add( light );
+
 container.appendChild(renderer.domElement);
-renderer.render(scene, camera);
 
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
