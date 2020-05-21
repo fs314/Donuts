@@ -14,8 +14,6 @@ camera.position.z = 7;
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(container.offsetWidth, container.offsetHeight);
 renderer.setClearColor("#ffffab");
-
-
 //Added very basic soft white light to project. This is temporary, will adjust later
 const light = new THREE.AmbientLight( 0xffffff ); 
 scene.add( light );
@@ -33,6 +31,8 @@ scene.add( hasee);
 let mainLoop = function() {
 
     hasee.position.x = vector.x;
+    hasee.position.y = vector.y;
+ 
     hasee.rotation.y += 0.01;
 
     donuts.forEach((donut) => {
@@ -83,6 +83,9 @@ document.onkeydown = function(e) {
   }
   else if (e.key === 'ArrowLeft') { 
     vector.x -= 0.02;
+  }
+  else if (e.key === ' ' || e.key === 'Spacebar') {
+    //add jumping function
   }
 };
 
