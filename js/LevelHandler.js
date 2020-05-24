@@ -1,5 +1,4 @@
 const configuration = {
-    container: document.getElementById('game-container'),
     percentageDonuts: 0,
     gravity: 0
 };

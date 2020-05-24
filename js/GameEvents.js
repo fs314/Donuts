@@ -12,13 +12,13 @@ export let donutsGenerator = function() {
 
 export let updateDonuts = (donut, gravity, percentageDonuts, scene) => {
     if(Math.random() < percentageDonuts) {
-        scene.add(donut);
-    }
+       scene.add(donut);
+    } 
   
     dropDonut(donut, gravity);
     donut.rotation.x +=0.01;
     donut.rotation.y +=0.01;
-  
+
     if(donut.position.x <=  -3) {
         donut.position.y = getRandomNumInRange(-1.7, 17);
         donut.position.x =3;
@@ -29,15 +29,6 @@ export let updateDonuts = (donut, gravity, percentageDonuts, scene) => {
 export let updateHasee = (hasee, positionVector) => {
     hasee.body.position.x = positionVector.x;
     hasee.body.position.y = positionVector.y;
-    //hasee.rotation.y += 0.005;
-};
-
-const dropDonut = (donut, gravity) => {
-    donut.rotation.y += 0.001;
-    setTimeout(
-        donut.position.x += gravity * Math.random(), 
-        Math.random()*10000
-    ); 
 };
 
 export let colorChangeDonut = (raycaster, scene, mouse, camera) => {
@@ -49,4 +40,12 @@ export let colorChangeDonut = (raycaster, scene, mouse, camera) => {
         intersects[ i ].object.material.color.set( 0xff0000 );
     }
 }
+
+const dropDonut = (donut, gravity) => {
+    donut.rotation.y += 0.001;
+    setTimeout(
+        donut.position.x += gravity * Math.random(), 
+        Math.random()*10000
+    ); 
+};
 
