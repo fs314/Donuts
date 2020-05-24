@@ -23,6 +23,8 @@ export let Swing = function() {
     this.swingTop.rotation.y = -0.2;
     this.swing.add(this.swingTop);
 
-    let balance = () => {}
+    this.balance = () => {
+        this.swingTop.rotation.y = - this.swingTop.rotation.y;
+    }
 }
 
