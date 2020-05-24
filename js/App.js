@@ -8,9 +8,7 @@ const {container, percentageDonuts, gravity } = setConfiguration();
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
 let requestId;
-let donuts = donutsGenerator(); 
-// vector for motion
-var vector = {x: 0, y: 0, z: 0};
+let positionVector = {x: 2, y: -1, z: 0}; // vector for motion
 
 // Create a three.js scene; set up the camera and the renderer.
 const scene = new THREE.Scene();
@@ -25,16 +23,20 @@ container.appendChild(renderer.domElement);
 const light = new THREE.AmbientLight( 0xffffff ); 
 scene.add( light );
 
+//populate the scene
+let donuts = donutsGenerator(); 
 let hasee = haseeGenerator();
+hasee.rotation.y=-0.5;
 scene.add( hasee);
 
 let mainLoop = () => {
 
-    updateHasee(hasee, vector);
+    updateHasee(hasee, positionVector);
 
+    /*
     donuts.forEach((donut) => {
       updateDonuts(donut, gravity, percentageDonuts, scene);
-    });  
+    }); */ 
 
     colorChangeDonut(raycaster, scene, mouse, camera);
 
@@ -56,10 +58,10 @@ let onMouseMove = function(event) {
 document.onkeydown = function(e) {
   e.preventDefault();
   if (e.key === 'ArrowRight') {     
-    vector.x += 0.02;
+    positionVector.x += 0.02;
   }
   else if (e.key === 'ArrowLeft') { 
-    vector.x -= 0.02;
+    positionVector.x -= 0.02;
   }
   else if (e.key === ' ' || e.key === 'Spacebar') {
     //add jumping function
