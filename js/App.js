@@ -1,6 +1,7 @@
 import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
 import {donutsGenerator, updateDonuts, updateHasee, colorChangeDonut} from './GameEvents.js';
 import {Hasee} from './Hasee.js';
+import {Swing} from './Swing.js';
 
 const {percentageDonuts, gravity } = setConfiguration();
 
@@ -28,7 +29,12 @@ scene.add( light );
 let donuts = donutsGenerator(); 
 let hasee = new Hasee();
 hasee.body.rotation.y=-0.5;
+hasee.body.position.z=1;
 scene.add(hasee.mesh);
+
+let swing = new Swing();
+swing.swing.position.z=0.5;
+scene.add(swing.mesh);
 
 let mainLoop = () => {
 
