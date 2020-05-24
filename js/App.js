@@ -1,6 +1,6 @@
 import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
 import {donutsGenerator, updateDonuts, updateHasee, colorChangeDonut} from './GameEvents.js';
-import {haseeGenerator} from './Hasee.js';
+import {Hasee, haseeGenerator} from './Hasee.js';
 
 const {container, percentageDonuts, gravity } = setConfiguration();
 
@@ -16,7 +16,7 @@ const camera = new THREE.PerspectiveCamera(30, container.offsetWidth/container.o
 camera.position.z = 7;
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(container.offsetWidth, container.offsetHeight);
-renderer.setClearColor("#ffffab");
+renderer.setClearColor("#A1D7D2");
 container.appendChild(renderer.domElement);
 
 //Added very basic soft white light to project. This is temporary, will adjust later
@@ -26,8 +26,8 @@ scene.add( light );
 //populate the scene
 let donuts = donutsGenerator(); 
 let hasee = haseeGenerator();
-hasee.rotation.y=-0.5;
-scene.add( hasee);
+hasee.body.rotation.y=-0.5;
+scene.add(hasee.mesh);
 
 let mainLoop = () => {
 
@@ -59,13 +59,16 @@ document.onkeydown = function(e) {
   e.preventDefault();
   if (e.key === 'ArrowRight') {     
     positionVector.x += 0.02;
+    //hasee.walk();
   }
   else if (e.key === 'ArrowLeft') { 
     positionVector.x -= 0.02;
+    //hasee.walk();
   }
   else if (e.key === ' ' || e.key === 'Spacebar') {
     //add jumping function
-  }
+    hasee.jump();
+  } 
 };
 
 let handleWindowResize = () => {
