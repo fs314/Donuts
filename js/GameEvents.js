@@ -28,7 +28,7 @@ export let updateDonuts = (donut, gravity, percentageDonuts, scene) => {
 
 export let updateHasee = (hasee, vector) => {
     hasee.position.x = vector.x;
-    hasee.rotation.y += 0.005;
+    //hasee.rotation.y += 0.005;
 };
 
 const dropDonut = (donut, gravity) => {

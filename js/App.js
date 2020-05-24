@@ -1,6 +1,5 @@
 import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
 import {donutsGenerator, updateDonuts, updateHasee, colorChangeDonut} from './GameEvents.js';
-//import {onMouseMove, handleWindowResize, haseeMoveControllers} from './GameControllers.js';
 import {haseeGenerator} from './Hasee.js';
 
 const {container, percentageDonuts, gravity } = setConfiguration();
@@ -76,6 +75,6 @@ let handleWindowResize = () => {
 
 document.getElementById( 'stopAnimation' ).addEventListener( 'click', stopAnimation);
 window.addEventListener( 'mousemove', onMouseMove, false );
-window.addEventListener('resize', handleWindowResize); 
+window.addEventListener( 'resize', handleWindowResize); 
 
 mainLoop(); 
