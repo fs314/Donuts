@@ -1,7 +1,5 @@
 import {setConfiguration} from './LevelHandler.js'; //fix imports with webpack
-import {donutsGenerator, updateDonuts, updateHasee, colorChangeDonut} from './GameEvents.js';
-import {Hasee} from './Hasee.js';
-import {Swing} from './Swing.js';
+import {donutsGenerator, updateDonuts, colorChangeDonut} from './GameEvents.js';
 import {Interact} from './GameController.js';
 
 const {percentageDonuts, gravity } = setConfiguration();
@@ -11,7 +9,6 @@ const container = document.getElementById('game-container');
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
 let requestId;
-let positionVector = {x: 2, y: -1.5, z: 0}; 
 
 // Create a three.js scene; set up the camera and the renderer.
 const scene = new THREE.Scene();
@@ -33,7 +30,7 @@ scene.add(interact.mesh);
 
 let mainLoop = () => {
 
-    updateHasee(interact.hasee, positionVector);
+    interact.moveHasee();
 
     donuts.forEach((donut) => {
       updateDonuts(donut, gravity, percentageDonuts, scene);
@@ -55,27 +52,9 @@ let onMouseMove = function(event) {
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 } 
 
-// key handler
-document.onkeydown = function(e) {
-  e.preventDefault();
-  if (e.key === 'ArrowRight') {     
-    positionVector.x += 0.02;
-    //hasee.walk();
-  }
-  else if (e.key === 'ArrowLeft') { 
-    positionVector.x -= 0.02;
-    //hasee.walk();
-  }
-  else if (e.key === ' ' || e.key === 'Spacebar') {
-    interact.hasee.jump();
-    interact.swing.balance();
-  } 
-};
-
 let handleWindowResize = () => {
   renderer.setSize(container.offsetWidth, container.offsetHeight);
   camera.aspect = container.offsetWidth/ container.offsetHeight;
-
   camera.updateProjectionMatrix();
 }
 

@@ -2,9 +2,6 @@ let darkgrey = new THREE.MeshLambertMaterial( {color: 0x3D3D3D});
 
 export let Swing = function() {
 
-    //tells on which side the swing is up
-    //let leftUp = false;
-
     this.mesh = new THREE.Group();
     this.swing = new THREE.Group();
     this.mesh.add(this.swing);

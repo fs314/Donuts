@@ -26,11 +26,6 @@ export let updateDonuts = (donut, gravity, percentageDonuts, scene) => {
     }
 };
 
-export let updateHasee = (hasee, positionVector) => {
-    hasee.body.position.x = positionVector.x;
-    hasee.body.position.y = positionVector.y;
-};
-
 export let colorChangeDonut = (raycaster, scene, mouse, camera) => {
     // update the picking ray with the camera and mouse position
     // & calculate objects intersecting the picking ray
